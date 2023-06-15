@@ -1,12 +1,22 @@
 #!/bin/bash
 
-# To display information about file
+# To display information about file permissions,owner and size
+# maintained by shabdashri
+# date 15-06-2023
+# To run the script mention file path
+echo "Checking dir and file"
+file=$1
+if [ -f "$file" ]
+then
+echo "true"
 
-dir=/home/ec2-user
+owner=$(ls -l $file | awk '{print $3}')
+perm=$(ls -l $file | awk '{print $1}')
+size=$( du -sh $file | awk '{print $1}')
 
-#for file in $dir/*;
-#do
-#echo "file $file is $(stat --printf='%s' test1 ) bytes"
-echo "permission    owner             size"
-echo "$(ls -l *)"
-#done
+echo "File name: $file"
+echo "Owner name: $owner" 
+echo "permissions: $perm"
+echo "File size: $size"
+
+fi
