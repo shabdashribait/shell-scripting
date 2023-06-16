@@ -6,14 +6,12 @@
 
 
 filename=$1
-if [ -f $filename ]
-then
 
-backupfile="/tmp/${filename}_bk"
+
+#backupfile="${filename}_bk"
 echo "backup file creating"
-cp -r  $filename $backupfile $HOME
-echo "Appending date and time"
-date >> $backupfile
-cat $backupfile
+cp -p $filename  /home/ec2-user/$filename-bkp-`date +%Y-%m-%d_%H:%M:%S`$filename$filename
+#echo "Appending date and time"
+#$date >> $backupfile
+#cat $backupfile
 
-fi
